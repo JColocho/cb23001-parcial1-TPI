@@ -1,0 +1,5 @@
+imagen
+docker build -t cb23001-server-php .
+
+contenedor
+docker run -d --name cb23001-contenedor-server -p 8080:80 --rm -v .:/var/www/html cb23001-server-php
