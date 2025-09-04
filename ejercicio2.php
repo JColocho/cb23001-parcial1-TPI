@@ -1,16 +1,22 @@
 <?php
-$temp = 0;
+$resultado = 0;
 $mensaje = "";
 if($_SERVER["REQUEST_METHOD"]== "POST"){
-    $tipo1 = (string)$_POST["tipo1"];
-    $tipo2 = (string)$_POST["tipo2"];
+    $temp = (float)$_POST["temp"];
+    $tipo1 = $_POST["tipo1"];
+    $tipo2 = $_POST["tipo2"];
 
     if($tipo1== ""|| $tipo2== ""){
+
+    }elseif($tipo1== "Celsius"&& $tipo2== "Fahrenheit"){
+        $resultado = $temp*(9/5) + 32; 
+        $mensaje = "Celsius a Fahrenheit";
+    }elseif($tipo1== "Fahrenheit"&& $tipo2== "Celsius"){
+        $resultado = $temp-32 * (5/9); 
+        $mensaje = "Fahrenheit a Celsius";
+    }else{
         $mensaje = "No hay tipos seleccionados";
-    }elseif($tipo1== ""|| $tipo2== ""){
-
     }
-
 }
 ?>
 
@@ -33,7 +39,7 @@ if($_SERVER["REQUEST_METHOD"]== "POST"){
                 <input type="radio" name="tipo2" id="tipo" value="Fahrenheit">Fahrenheit <br> 
                 <button type="submit">Calcular</button>
         </form>
-        <p><?php echo $temp?></p>
+        <p><?php echo $resultado?></p>
     </div>
     
 </body>
